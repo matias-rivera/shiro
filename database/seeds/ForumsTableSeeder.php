@@ -13,8 +13,9 @@ class ForumsTableSeeder extends Seeder
      */
     public function run()
     {
-        Forum::create(['name' => 'Laravel',
-        'slug' => Str::slug('Laravel')]);
+        Forum::create(['name' => 'Laravel for coders',
+        'description' => 'A little space for laravel coders to talk about the best PHP framework.',
+        'url' => Str::lower(preg_replace('/\s+/', '', 'Laravel for coders'))]);
 
     }
 }

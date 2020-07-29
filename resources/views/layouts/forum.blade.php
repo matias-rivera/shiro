@@ -82,19 +82,11 @@
                 <div class="col-md-3">
 
                     <div class="card">
-                        <div class="card-header">Channels</div>
+                        <div class="card-header text-center font-weight-bold">{{$forum->name}}</div>
                         <div class="card-body">
-
-                            <ul class="list-group">
-                                @foreach ($forums as $forum)
-                                    <a href="{{route('forums.show',$forum->url)}}">
-                                        <li class="list-group-item ">{{$forum->name}}</li>
-                                    </a>
-                                @endforeach
-                                
-                               
-                            </ul>
-
+                            <img class="rounded-circle mx-auto d-block mb-2" style="max-width:100px" src="https://cdn.auth0.com/blog/illustrations/laravel.png" alt="">
+                            <a href="{{route('forums.show',$forum->url)}}"><h6 class="text-center">f/{{$forum->url}}</h6></a>
+                            <p>{{$forum->description}}</p>
                         </div>
                     </div>
                 </div>

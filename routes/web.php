@@ -20,3 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/s/{forum}','ForumsController@show')->name('forums.show');
+
+Route::resource('posts','PostsController');
+//Route::resource('forums','ForumsController');
