@@ -7,6 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
+    protected $fillable = [
+        'title', 'content', 'forum_id','slug'
+    ];
     public function getRouteKeyName(){
         return 'slug';
     } 

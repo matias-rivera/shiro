@@ -12,11 +12,11 @@ Popular posts
   
         <div class="card-body pt-0">
             <div class="text-right">24/20/2071</div>
-            <a href="{{route('posts.show',[$post->forum->url,$post->slug])}}"><p class="h4" > {{$post->title}}</p></a>
+            <a href="{{route('posts.show',[$post->forum->url,$post->slug])}}"><p class="h4 text-dark" > {{$post->title}}</p></a>
         </div>
         <div class="card-footer py-1">
         <span class="float-left">
-            by John Doe  {{$post->forum->url}}
+            <a class="font-weight-bold" href="{{route('forums.show',$post->forum->url)}}">s/{{$post->forum->url}}</a> Posted by {{$post->user->name}} 
 
         </span>
         <span class="float-right">

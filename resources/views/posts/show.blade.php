@@ -7,7 +7,9 @@
         
         <div class="card-body">
             <h2>{{$post->title}}</h2>
-            <p>{{$post->content}}</p>
+            <p>{!!$post->content !!}</p>
+
+            
         </div>
 
         <div class="card-footer">
@@ -22,15 +24,18 @@
 
     </div>
 
+    @auth
     <div>
-        <button class="btn btn-success">New Comment</button>
+        <a href="{{route('comments.create',[$forum->url,$post->slug])}}" class="btn btn-success">New Comment</a>
     </div>
+        
+    @endauth
 
     @foreach ($post->comments as $comment)
         <div class="card my-2">
             <div class="card-header">By {{$comment->user->name}}  <span class="float-right">{{$comment->date}}</span></div>
             <div class="card-body">
-                {{$comment->content}}
+                {!!$comment->content!!}
                 
             </div>
         </div>

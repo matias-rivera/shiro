@@ -3,9 +3,12 @@
 
 @section('content')
 
+@auth
+    
 <div>
-    <button class="btn btn-success">New Post</button>
+    <a href="{{route('posts.create',$forum->url)}}" class="btn btn-success">New Post</a>
 </div>
+@endauth
 
     @foreach ($forum->posts as $post)
 
@@ -16,7 +19,7 @@
     
             <div class="card-body pt-0">
                 <div class="text-right">24/20/2071</div>
-                <a href="{{route('posts.show',[$post->forum->url,$post->slug])}}"><p class="h4" > {{$post->title}}</p></a>
+                <a class="text-dark" href="{{route('posts.show',[$post->forum->url,$post->slug])}}"><p class="h4" > {{$post->title}}</p></a>
             </div>
             <div class="card-footer py-1">
             <span class="float-left">
@@ -24,8 +27,8 @@
 
             </span>
             <span class="float-right">
-            <i class="fa fa-eye" aria-hidden="true"></i> 5000 Visits
-            <i class="fa fa-commenting-o" aria-hidden="true"></i> 124 Comments</span>
+            <i class="fa fa-eye" aria-hidden="true"></i> {{$post->visits}} Visits
+            <i class="fa fa-commenting-o" aria-hidden="true"></i> {{$post->comments->count()}} Comments</span>
             </div>
         </div>
 

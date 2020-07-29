@@ -1,19 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+
+
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
-use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\CreateCommentRequest;
 use App\Post;
 use App\Forum;
 use App\User;
 
-class PostsController extends Controller
+class CommentsController extends Controller
 {
-    
     public function __construct()
     {
-        $this->middleware('auth')->except(['show']);
+        $this->middleware('auth');
 
     }
     /**
@@ -31,12 +32,12 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Forum $forum)
+    public function create(Forum $forum, Post $post)
     {
-        
-         return view('posts.create',[
+        return view('comments.create',[
+            'post' => $post,
             'forum' => $forum
-        ]); 
+        ]);
     }
 
     /**
@@ -45,19 +46,16 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Forum $forum, CreatePostRequest $request)
+    public function store(CreateCommentRequest $request,Forum $forum, Post $post)
     {
-        auth()->user()->posts()->create([
-            'title' => $request->title,
+        auth()->user()->comments()->create([
             'content' => $request->content,
-            'forum_id' => $forum->id,
-            'slug' => Str::slug($request->title)
-
+            'post_id' => $post->id,
         ]);
 
-        session()->flash('success','Post created.');
+        session()->flash('success','Comment submitted.');
 
-        return redirect()->route('forums.show',$forum->url);
+        return redirect()->route('posts.show',[$forum->url,$post->slug]);
     }
 
     /**
@@ -66,13 +64,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Forum $forum,Post $post)
+    public function show($id)
     {
-        $post->increment('visits');
-        return view('posts.show',[
-            'post' => $post,
-            'forum' => $forum
-        ]);
+        //
     }
 
     /**
