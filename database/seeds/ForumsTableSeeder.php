@@ -17,5 +17,9 @@ class ForumsTableSeeder extends Seeder
         'description' => 'A little space for laravel coders to talk about the best PHP framework.',
         'url' => Str::lower(preg_replace('/\s+/', '', 'Laravel for coders'))]);
 
+        Forum::create(['name' => 'The MERN Stack',
+        'description' => 'MongoDB, ExpressJS, ReactJS and NodeJS. All in one place.',
+        'url' => Str::lower(preg_replace('/\s+/', '', 'The MERN Stack'))]);
+
     }
 }

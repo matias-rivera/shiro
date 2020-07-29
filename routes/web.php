@@ -13,14 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+ Route::get('/', function () {
+    return redirect('/home');
 });
-
+ 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/s/{forum}','ForumsController@show')->name('forums.show');
 
-Route::resource('posts','PostsController');
+Route::get('/s/{forum}/posts/{post}','PostsController@show')->name('posts.show');
 //Route::resource('forums','ForumsController');

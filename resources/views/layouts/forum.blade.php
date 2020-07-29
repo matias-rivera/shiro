@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div id="app">
@@ -85,11 +87,13 @@
                         <div class="card-header text-center font-weight-bold">{{$forum->name}}</div>
                         <div class="card-body">
                             <img class="rounded-circle mx-auto d-block mb-2" style="max-width:100px" src="https://cdn.auth0.com/blog/illustrations/laravel.png" alt="">
-                            <a href="{{route('forums.show',$forum->url)}}"><h6 class="text-center">f/{{$forum->url}}</h6></a>
+                            <a href="{{route('forums.show',$forum->url)}}"><h6 class="text-center">s/{{$forum->url}}</h6></a>
                             <p>{{$forum->description}}</p>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </main>
         

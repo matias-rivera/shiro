@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Forum;
+use App\Post;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home')->with('forums',Forum::all());
+        return view('home')
+        ->with('forums',Forum::all())
+        ->with('posts',Post::take(50)->get());
     }
 }
