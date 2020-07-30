@@ -35,7 +35,7 @@ composer install
 npm install
 ```
 
-_Remember to create the database on your server, use --seed to load some test data_
+_Remember to create the database on your mysql server which dbname is 'shiro', use --seed to load some test data_
 ```
 php artisan migrate --seed
 ```
