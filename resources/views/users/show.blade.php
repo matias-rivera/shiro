@@ -35,7 +35,7 @@
       <a class="nav-link" href="#comments" role="tab" data-toggle="tab">Comments</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#forums" role="tab" data-toggle="tab">Forums</a>
+      <a class="nav-link" href="#servers" role="tab" data-toggle="tab">Servers</a>
     </li>
   </ul>
   
@@ -92,7 +92,7 @@
         
         @endforeach
     </div>
-    <div role="tabpanel" class="tab-pane " id="forums">
+    <div role="tabpanel" class="tab-pane " id="servers">
         Not found
     </div>
   </div>
