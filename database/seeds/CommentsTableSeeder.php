@@ -68,6 +68,56 @@ class CommentsTableSeeder extends Seeder
              opósito (por ejemplo insertándole humor y cosas por el estilo). ¿De dónde viene? Al contrario
               del pensamiento pop'
         ]);
+
+
+        Comment::create([
+            'user_id' => 1,
+            'post_id' => 1,
+            'content' => 'dica a la imprenta) desconocido usó una galería de textos y los mezcló de t
+            al manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, si
+            no que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencia
+            lmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letras
+            et", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoe
+            dición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. ¿Por q
+            ué lo usamos? Es un hecho establecido hace demasiado tiempo que un lector se distraerá con 
+            ',
+            'parent' => 1
+        ]);
+        
+        Comment::create([
+            'user_id' => 1,
+            'post_id' => 1,
+            'content' => 'dica a la imprenta) desconocido usó una galería de textos y0s con la creación de las hojas "Letras
+            et", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoe
+            dición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. ¿Por q
+            ué lo usamos? Es un hecho establecido hace demasiado tiempo que un lector se distraerá con 
+            ',
+            'parent' => 1
+        ]);
+        Comment::create([
+            'user_id' => 1,
+            'post_id' => 1,
+            'content' => 'dica a la imprenta) desconocido usó una galería de textos y los mezcló de t
+            al manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, si
+            no que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencia
+            lmente igual aos 60s con la creación de las hojas "Letras
+            et", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoe
+            dición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. ¿Por q
+            ué lo usamos? Es un hecho establecido hace demasiado tiempo que un lector se distraerá con 
+            ',
+            'parent' => 4
+        ]);
+
+        Comment::create([
+            'user_id' => 1,
+            'post_id' => 1,
+            'content' => 'dica a la imprenta) desconocido usó una galería de textos y los mezcló de t
+            al manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, si
+            no que tambien ingresó como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum. ¿Por q
+            ué lo usamos? Es un hecho establecido hace demasiado tiempo que un lector se distraerá con 
+            ',
+            'parent' => 5
+        ]);
         
 
 

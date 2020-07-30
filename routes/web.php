@@ -24,6 +24,7 @@ Route::resource('/users','UsersController');
 //Route::get('/u/{user}', 'UsersController@show')->name('users.show');
 Route::resource('s/{forum}/posts','PostsController');
 Route::resource('s/{forum}/posts/{post}/comments', 'CommentsController');
+Route::get('s/{forum}/posts/{post}/comments/{comment}/reply','CommentsController@reply')->name('comments.reply');
 
 
 //Route::get('/s/{forum}/posts/{post}','PostsController@show')->name('posts.show');

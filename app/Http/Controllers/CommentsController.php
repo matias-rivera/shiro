@@ -9,6 +9,7 @@ use App\Http\Requests\CreateCommentRequest;
 use App\Post;
 use App\Forum;
 use App\User;
+use App\Comment;
 
 class CommentsController extends Controller
 {
@@ -48,14 +49,55 @@ class CommentsController extends Controller
      */
     public function store(CreateCommentRequest $request,Forum $forum, Post $post)
     {
-        auth()->user()->comments()->create([
-            'content' => $request->content,
-            'post_id' => $post->id,
-        ]);
+            $comment_id = null;
+            if($comment = Comment::find($request->comment))
+            $comment_id = $comment->id;
+
+            
+            auth()->user()->comments()->create([
+                'content' => $request->content,
+                'post_id' => $post->id,
+                'parent' => $comment_id 
+            ]);   
+
+            session()->flash('success','Comment submitted.');
+
+            return redirect()->route('posts.show',[$forum->url,$post->slug]);
+
+
+        
+      /*   if(isset($request->comment)){
+
+            if($comment = Comment::find($request->comment)->first()){
+                auth()->user()->comments()->create([
+                    'content' => $request->content,
+                    'post_id' => $post->id,
+                    'parent' => $comment->id
+                ]);
+            }
+            
+            else{
+                session()->flash('danger','Cannot find comment.');
+
+                return redirect()->route('posts.show',[$forum->url,$post->slug]);
+            }   
+            
+        }
+
+        
+            auth()->user()->comments()->create([
+                'content' => $request->content,
+                'post_id' => $post->id,
+            ]);
+        
+        
+       
+
+
 
         session()->flash('success','Comment submitted.');
 
-        return redirect()->route('posts.show',[$forum->url,$post->slug]);
+        return redirect()->route('posts.show',[$forum->url,$post->slug]); */
     }
 
     /**
@@ -67,6 +109,15 @@ class CommentsController extends Controller
     public function show($id)
     {
         //
+    }
+
+    public function reply(Forum $forum, Post $post, Comment $comment)
+    {
+        return view('comments.reply',[
+            'forum' => $forum,
+            'post' => $post,
+            'comment' => $comment
+        ]);
     }
 
     /**

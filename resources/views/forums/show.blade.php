@@ -18,12 +18,12 @@
         <div class="card my-2">
     
             <div class="card-body pt-0">
-                <div class="text-right">24/20/2071</div>
+                <div class="text-right">{{$post->date->format('d/m/Y')}}</div>
                 <a class="text-dark" href="{{route('posts.show',[$post->forum->url,$post->slug])}}"><p class="h4" > {{$post->title}}</p></a>
             </div>
             <div class="card-footer py-1">
             <span class="float-left">
-                Posted by {{$post->user->name}}
+                Posted by <a href="{{route('users.show',$post->user->username)}}" class="text-dark font-weight-bold">{{$post->user->username}}</a> 
 
             </span>
             <span class="float-right">
