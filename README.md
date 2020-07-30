@@ -39,5 +39,10 @@ _Remember to create the database on your mysql server which dbname is 'shiro', u
 ```
 php artisan migrate --seed
 ```
+_Default user_
+
+*user: root@admin.com
+
+*pass: root
 
 
