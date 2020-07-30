@@ -91,6 +91,11 @@
                             <a href="{{route('forums.show',$forum->url)}}"><h6 class="text-center">s/{{$forum->url}}</h6></a>
                             <p>{{$forum->description}}</p>
                         </div>
+                        <div class="card-footer">
+                            <div class="">
+                                <i class="fa fa-eye" aria-hidden="true"></i> {{$forum->visits}} Visits
+                                <i class="fa fa-sticky-note-o" aria-hidden="true"></i> {{$forum->posts->count()}} Posts</div>
+                        </div>
                     </div>
                 </div>
 

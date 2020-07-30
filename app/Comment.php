@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
+
+    protected $dates = ['date'];
+    
     protected $fillable = [
         'content', 'post_id'
     ];

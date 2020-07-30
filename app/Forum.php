@@ -15,4 +15,8 @@ class Forum extends Model
     public function getRouteKeyName(){
         return 'url';
     }   
+
+    public function scopeOrderByVisits($query){
+        return $query->orderBy('visits','desc');
+    }
 }

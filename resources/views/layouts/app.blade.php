@@ -86,8 +86,8 @@
 
                 <div class="col-12 col-lg-3">
 
-                    <div class="card">
-                        <div class="card-header">Forums</div>
+                    <div class="card mb-2">
+                        <div class="card-header">Top Forums</div>
                         <div class="card-body">
 
                             <ul class="list-group">
@@ -109,6 +109,29 @@
 
                         </div>
                     </div>
+
+                    <div class="card">
+                        <div class="card-header">Top Posts</div>
+                        <div class="card-body">
+
+                            <ul class="list-group">
+
+                                @if (isset($posts))
+                                    
+                                @forelse ($posts as $post)
+                                <a class="text-dark" href="{{route('posts.show',[$post->forum->url,$post->slug])}}">
+                                    <li class="list-group-item ">{{$post->title}}</li>
+                                </a>
+                                @empty
+                                    Nada
+                                @endforelse
+                                @endif
+                               
+                            </ul>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </main>

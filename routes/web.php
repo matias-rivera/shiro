@@ -18,9 +18,10 @@ use Illuminate\Support\Facades\Route;
 }); 
  
 Auth::routes();
-Auth::routes(['forums.show' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/s/{forum}','ForumsController@show')->name('forums.show');
+Route::resource('/users','UsersController');
+//Route::get('/u/{user}', 'UsersController@show')->name('users.show');
 Route::resource('s/{forum}/posts','PostsController');
 Route::resource('s/{forum}/posts/{post}/comments', 'CommentsController');
 

@@ -23,7 +23,7 @@
             </div>
             <div class="card-footer py-1">
             <span class="float-left">
-                by John Doe  {{$post->forum->url}}
+                Posted by {{$post->user->name}}
 
             </span>
             <span class="float-right">

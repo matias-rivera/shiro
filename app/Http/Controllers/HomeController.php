@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('home')
-        ->with('forums',Forum::all())
-        ->with('posts',Post::take(50)->get());
+        ->with('forums',Forum::orderByVisits()->get())
+        ->with('posts',Post::take(50)->orderByVisits()->get());
     }
 }

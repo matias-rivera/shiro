@@ -3,7 +3,8 @@
 
 @section('content')
     <div class="card mb-4">
-        <div class="card-header"> By {{$post->user->name}}  <span class="float-right">{{$post->date}}</span></div>
+        <div class="card-header">By <a href="{{route('users.show',$post->user->username)}}">{{$post->user->username}}</a>   
+            <span class="float-right">{{ $post->date->format('d/m/Y') }}</span></div>
         
         <div class="card-body">
             <h2>{{$post->title}}</h2>
@@ -33,7 +34,7 @@
 
     @foreach ($post->comments as $comment)
         <div class="card my-2">
-            <div class="card-header">By {{$comment->user->name}}  <span class="float-right">{{$comment->date}}</span></div>
+            <div class="card-header"><a href="{{route('users.show',$comment->user->username)}}">{{$comment->user->username}}</a>   <span class="float-right">{{$comment->date->format('d/m/Y')}}</span></div>
             <div class="card-body">
                 {!!$comment->content!!}
                 

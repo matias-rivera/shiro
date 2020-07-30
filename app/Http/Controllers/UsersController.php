@@ -3,17 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Post;
 use App\Forum;
 
-class ForumsController extends Controller
+class UsersController extends Controller
 {
-
-
-    public function __construct()
-    {
-        $this->middleware('auth')->except(['show']);
-
-    }
     /**
      * Display a listing of the resource.
      *
@@ -29,9 +24,9 @@ class ForumsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Forum $forum)
+    public function create()
     {
-        return view('/home');
+        //
     }
 
     /**
@@ -51,12 +46,16 @@ class ForumsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Forum $forum)
+    public function show(User $user)
     {
-        $forum->increment('visits');
-        return view('forums.show',[
-            'forum' => $forum
+        return view('users.show',[
+            'user' => $user,
+            'forums' => Forum::orderByVisits()->get(),
+            'posts' => Post::take(50)->orderByVisits()->get()
         ]);
+
+        
+
     }
 
     /**
