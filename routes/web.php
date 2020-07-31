@@ -22,6 +22,9 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/s/{server}','ServersController@show')->name('servers.show');
 Route::get('users/notifications',[UsersController::class,'notifications'])->name('users.notifications');
+Route::get('users/posts',[UsersController::class,'posts'])->name('users.posts');
+Route::get('users/comments',[UsersController::class,'comments'])->name('users.comments');
+
 Route::resource('/users','UsersController');
 
 //Route::get('/u/{user}', 'UsersController@show')->name('users.show');

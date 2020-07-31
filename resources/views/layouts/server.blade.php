@@ -46,14 +46,14 @@
                                 <p>{{$server->description}}</p>
 
                             </div>
-                            <div class="text-center">
+                         {{--    <div class="text-center">
                                 <a href="" class="btn btn-success">Join Server</a>
 
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="card-footer">
                             <div class="">
-                                <i class="fa fa-users" aria-hidden="true"></i> {{$server->visits}} Members
+                                {{-- <i class="fa fa-users" aria-hidden="true"></i> {{$server->visits}} Members --}}
                                 <i class="fa fa-sticky-note-o" aria-hidden="true"></i> {{$server->posts->count()}} Posts</div>
                         </div>
                     </div>

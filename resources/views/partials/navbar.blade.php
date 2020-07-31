@@ -32,7 +32,7 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                     
+                                
                                 <a href="{{route('users.notifications')}}" class="dropdown-item">
                                     @if (auth()->user()->unreadNotifications->count()>0)
                                         <span class="badge badge-info">
@@ -40,8 +40,22 @@
                                         </span>
                                     @endif
                                         {{ __('Notifications') }}
-                                   
+                                
+                                </a>    
+                                
+                                <a href="{{route('users.posts')}}" class="dropdown-item">
+    
+                                        {{ __('My Posts') }}
+                                
                                 </a>
+
+                                <a href="{{route('users.comments')}}" class="dropdown-item">
+    
+                                    {{ __('My Comments') }}
+                            
+                                </a>
+                     
+                                
             
                             
                             

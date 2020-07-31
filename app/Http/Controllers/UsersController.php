@@ -92,6 +92,18 @@ class UsersController extends Controller
         ]);
     }
 
+    public function posts(){
+
+    
+        return view('users.posts');
+    }
+
+    public function comments(){
+
+    
+        return view('users.comments');
+    }
+
     /**
      * Remove the specified resource from storage.
      *

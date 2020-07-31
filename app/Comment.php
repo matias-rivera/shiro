@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
 
-    protected $dates = ['created_at','date'];
+    protected $dates = ['created_at'];
 
     protected $fillable = [
         'content', 'post_id', 'parent','user_id'
@@ -29,8 +29,14 @@ class Comment extends Model
         return $this->belongsTo('App\Comment','parent');
     }
 
+    
+
     public function replies() {
         return $this->hasMany('App\Comment','parent');
+    }
+
+    public function getParent(){
+        return $this->parent()->get()->first();
     }
 
 
