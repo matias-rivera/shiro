@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Post;
-use App\Forum;
+use App\Server;
 
 class UsersController extends Controller
 {
@@ -50,7 +50,7 @@ class UsersController extends Controller
     {
         return view('users.show',[
             'user' => $user,
-            'forums' => Forum::orderByVisits()->get(),
+            'servers' => Server::orderByVisits()->get(),
             'posts' => Post::take(50)->orderByVisits()->get()
         ]);
 
@@ -79,6 +79,17 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+
+    public function notifications(){
+
+     
+        auth()->user()->unreadNotifications->markAsRead();
+
+        return view('users.notifications',[
+            'notifications' => auth()->user()->notifications()->paginate(5)
+        ]);
     }
 
     /**

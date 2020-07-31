@@ -11,12 +11,12 @@ Popular posts
     <div class="card my-2">
   
         <div class="card-body pt-0">
-            <div class="text-right">{{ $post->date->format('d/m/Y') }}</div>
-            <a href="{{route('posts.show',[$post->forum->url,$post->slug])}}"><p class="h4 text-dark" > {{$post->title}}</p></a>
+            <div class="text-right">{{ $post->created_at->format('d/m/Y') }}</div>
+            <a href="{{route('posts.show',[$post->server->url,$post->slug])}}"><p class="h4 text-dark" > {{$post->title}}</p></a>
         </div>
         <div class="card-footer py-1">
         <span class="float-left">
-            <a class="font-weight-bold" href="{{route('forums.show',$post->forum->url)}}">s/{{$post->forum->url}}</a> 
+            <a class="font-weight-bold" href="{{route('servers.show',$post->server->url)}}">s/{{$post->server->url}}</a> 
             Posted by <a href="{{route('users.show',$post->user->username)}}" class="text-dark font-weight-bold">{{$post->user->username}}</a> 
         </span>
         <span class="float-right">

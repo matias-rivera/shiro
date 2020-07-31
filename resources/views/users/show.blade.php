@@ -51,12 +51,12 @@
             <div class="card my-2">
           
                 <div class="card-body pt-0">
-                    <div class="text-right">{{ $post->date->format('d/m/Y') }}</div>
-                    <a href="{{route('posts.show',[$post->forum->url,$post->slug])}}"><p class="h4 text-dark" > {{$post->title}}</p></a>
+                    <div class="text-right">{{ $post->created_at->format('d/m/Y') }}</div>
+                    <a href="{{route('posts.show',[$post->server->url,$post->slug])}}"><p class="h4 text-dark" > {{$post->title}}</p></a>
                 </div>
                 <div class="card-footer py-1">
                 <span class="float-left">
-                    <a class="font-weight-bold" href="{{route('forums.show',$post->forum->url)}}">s/{{$post->forum->url}}</a> 
+                    <a class="font-weight-bold" href="{{route('servers.show',$post->server->url)}}">s/{{$post->server->url}}</a> 
                     Posted by <a href="{{route('users.show',$post->user->username)}}" class="text-dark font-weight-bold">{{$post->user->username}}</a> 
                 </span>
                 <span class="float-right">
@@ -76,15 +76,15 @@
         </style>
             <div class="card my-2">
                 <div class="card-header">
-                    <a href="{{route('posts.show',[$comment->post->forum->url,$comment->post->slug])}}"><p class="h4 text-dark" > {{$comment->post->title}}</p></a>
+                    <a href="{{route('posts.show',[$comment->post->server->url,$comment->post->slug])}}"><p class="h4 text-dark" > {{$comment->post->title}}</p></a>
                 </div>
                 <div class="card-body pt-0">
-                    <div class="text-right">{{ $comment->date->format('d/m/Y') }}</div>
+                    <div class="text-right">{{ $comment->created_at->format('d/m/Y') }}</div>
                    <p class="text-dark" > {!!$comment->content!!}</p>
                 </div>
                 <div class="card-footer py-1">
                 <span class="float-left">
-                    <a class="font-weight-bold" href="{{route('forums.show',$comment->post->forum->url)}}">s/{{$comment->post->forum->url}}</a> 
+                    <a class="font-weight-bold" href="{{route('servers.show',$comment->post->server->url)}}">s/{{$comment->post->server->url}}</a> 
                     Posted by <a href="{{route('users.show',$comment->user->username)}}" class="text-dark font-weight-bold">{{$comment->post->user->username}}</a> 
                 </span>
                 </div>

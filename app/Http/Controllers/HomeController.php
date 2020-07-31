@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Forum;
+use App\Server;
 use App\Post;
 
 class HomeController extends Controller
@@ -26,7 +26,7 @@ class HomeController extends Controller
     public function index()
     {
         return view('home')
-        ->with('forums',Forum::orderByVisits()->get())
+        ->with('servers',Server::orderByVisits()->get())
         ->with('posts',Post::take(50)->orderByVisits()->get());
     }
 }

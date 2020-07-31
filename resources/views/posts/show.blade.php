@@ -1,10 +1,10 @@
 
-@extends('layouts.forum')
+@extends('layouts.server')
 
 @section('content')
     <div class="card mb-4">
         <div class="card-header">By <a href="{{route('users.show',$post->user->username)}}">{{$post->user->username}}</a>   
-            <span class="float-right">{{ $post->date->format('d/m/Y') }}</span></div>
+            <span class="float-right">{{ $post->created_at->format('d/m/Y') }}</span></div>
         
         <div class="card-body">
             <h2>{{$post->title}}</h2>
@@ -27,7 +27,7 @@
 
     @auth
     <div>
-        <a href="{{route('comments.create',[$forum->url,$post->slug])}}" class="btn btn-success">New Comment</a>
+        <a href="{{route('comments.create',[$server->url,$post->slug])}}" class="btn btn-success">New Comment</a>
     </div>
         
     @endauth
@@ -38,8 +38,8 @@
             
                 <div class="card-header">
                     <a href="{{route('users.show',$comment->user->username)}}">{{$comment->user->username}}</a>   
-                    <span class="">{{$comment->date->format('d/m/Y')}}</span>
-                    <a href="{{route('comments.reply',[$comment->post->forum->url,$comment->post->slug,$comment->id])}}" class="btn btn-info float-right">Reply</a>
+                    <span class="">{{$comment->created_at->format('d/m/Y')}}</span>
+                    <a href="{{route('comments.reply',[$comment->post->server->url,$comment->post->slug,$comment->id])}}" class="btn btn-info float-right">Reply</a>
                 </div>
                 <div class="card-body">
                     {!!$comment->content!!}

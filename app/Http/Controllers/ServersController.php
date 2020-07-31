@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Forum;
+use App\Server;
 
-class ForumsController extends Controller
+class ServersController extends Controller
 {
 
 
@@ -29,7 +29,7 @@ class ForumsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Forum $forum)
+    public function create(Server $server)
     {
         return view('/home');
     }
@@ -51,11 +51,11 @@ class ForumsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Forum $forum)
+    public function show(Server $server)
     {
-        $forum->increment('visits');
-        return view('forums.show',[
-            'forum' => $forum
+        $server->increment('visits');
+        return view('servers.show',[
+            'server' => $server
         ]);
     }
 

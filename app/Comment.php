@@ -1,16 +1,17 @@
 <?php
 
 namespace App;
+use App\Comment;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
 
-    protected $dates = ['date'];
+    protected $dates = ['created_at','date'];
 
     protected $fillable = [
-        'content', 'post_id', 'parent'
+        'content', 'post_id', 'parent','user_id'
     ];
     public function post()
     {
@@ -22,10 +23,15 @@ class Comment extends Model
         return $this->belongsTo('App\User');
     }
 
-    public function replies() {
-        return $this->hasMany('App\Comment','parent');
-    }
+    
+
     public function parent() {
         return $this->belongsTo('App\Comment','parent');
     }
+
+    public function replies() {
+        return $this->hasMany('App\Comment','parent');
+    }
+
+
 }

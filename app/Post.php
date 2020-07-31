@@ -8,19 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 
-    protected $dates = ['date'];
+    protected $dates = ['created_at'];
 
     protected $fillable = [
-        'title', 'content', 'forum_id','slug'
+        'title', 'content', 'server_id','slug'
     ];
     public function getRouteKeyName(){
         return 'slug';
     } 
 
     
-    public function forum(){
+    public function server(){
         
-            return $this->belongsTo('App\Forum');
+            return $this->belongsTo('App\Server');
     }
 
     public function user()

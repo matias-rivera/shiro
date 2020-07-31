@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,16 +20,13 @@ use Illuminate\Support\Facades\Route;
  
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/s/{forum}','ForumsController@show')->name('forums.show');
+Route::get('/s/{server}','ServersController@show')->name('servers.show');
+Route::get('users/notifications',[UsersController::class,'notifications'])->name('users.notifications');
 Route::resource('/users','UsersController');
+
 //Route::get('/u/{user}', 'UsersController@show')->name('users.show');
-Route::resource('s/{forum}/posts','PostsController');
-Route::resource('s/{forum}/posts/{post}/comments', 'CommentsController');
-Route::get('s/{forum}/posts/{post}/comments/{comment}/reply','CommentsController@reply')->name('comments.reply');
+Route::resource('s/{server}/posts','PostsController');
+Route::resource('s/{server}/posts/{post}/comments', 'CommentsController');
+Route::get('s/{server}/posts/{post}/comments/{comment}/reply','CommentsController@reply')->name('comments.reply');
 
 
-//Route::get('/s/{forum}/posts/{post}','PostsController@show')->name('posts.show');
-//Route::get('/s/{forum}/posts/create','ForumsController@create')->name('posts.create');
-//Route::get('/s/{forum}/posts/create','PostsController@create')->name('posts.create');
-//Route::put('/s/{forum}/posts/store','PostsController@store')->name('posts.store');
-//Route::resource('forums','ForumsController');

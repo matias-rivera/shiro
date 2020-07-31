@@ -1,4 +1,4 @@
-@extends('layouts.forum')
+@extends('layouts.server')
 
 
 @section('content')
@@ -6,11 +6,11 @@
 @auth
     
 <div>
-    <a href="{{route('posts.create',$forum->url)}}" class="btn btn-success">New Post</a>
+    <a href="{{route('posts.create',$server->url)}}" class="btn btn-success">New Post</a>
 </div>
 @endauth
 
-    @foreach ($forum->posts as $post)
+    @foreach ($server->posts as $post)
 
     <style>
     
@@ -18,8 +18,8 @@
         <div class="card my-2">
     
             <div class="card-body pt-0">
-                <div class="text-right">{{$post->date->format('d/m/Y')}}</div>
-                <a class="text-dark" href="{{route('posts.show',[$post->forum->url,$post->slug])}}"><p class="h4" > {{$post->title}}</p></a>
+                <div class="text-right">{{$post->created_at->format('d/m/Y')}}</div>
+                <a class="text-dark" href="{{route('posts.show',[$post->server->url,$post->slug])}}"><p class="h4" > {{$post->title}}</p></a>
             </div>
             <div class="card-footer py-1">
             <span class="float-left">

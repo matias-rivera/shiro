@@ -1,4 +1,4 @@
-@extends('layouts.forum')
+@extends('layouts.server')
 
 @section('content')
 
@@ -7,7 +7,7 @@
 
     <div class="card-body">
 
-        <form action="{{route('posts.store',$forum->url)}}" method="POST">
+        <form action="{{route('posts.store',$server->url)}}" method="POST">
         
             @csrf
          

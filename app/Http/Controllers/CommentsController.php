@@ -7,9 +7,11 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateCommentRequest;
 use App\Post;
-use App\Forum;
+use App\Server;
 use App\User;
 use App\Comment;
+use App\Notifications\NewCommentAdded;
+use App\Notifications\NewReplyAdded;
 
 class CommentsController extends Controller
 {
@@ -33,11 +35,11 @@ class CommentsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Forum $forum, Post $post)
+    public function create(Server $server, Post $post)
     {
         return view('comments.create',[
             'post' => $post,
-            'forum' => $forum
+            'server' => $server
         ]);
     }
 
@@ -47,57 +49,57 @@ class CommentsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateCommentRequest $request,Forum $forum, Post $post)
-    {
+    public function store(CreateCommentRequest $request,Server $server, Post $post)
+    {       
+            //If is not a reply
             $comment_id = null;
-            if($comment = Comment::find($request->comment))
-            $comment_id = $comment->id;
-
             
-            auth()->user()->comments()->create([
-                'content' => $request->content,
-                'post_id' => $post->id,
-                'parent' => $comment_id 
-            ]);   
+            //Check if Comment is a reply
+            if($comment = Comment::find($request->comment)){
+                $comment_id = $comment->id;
 
-            session()->flash('success','Comment submitted.');
-
-            return redirect()->route('posts.show',[$forum->url,$post->slug]);
-
-
-        
-      /*   if(isset($request->comment)){
-
-            if($comment = Comment::find($request->comment)->first()){
-                auth()->user()->comments()->create([
-                    'content' => $request->content,
-                    'post_id' => $post->id,
-                    'parent' => $comment->id
-                ]);
             }
             
-            else{
-                session()->flash('danger','Cannot find comment.');
 
-                return redirect()->route('posts.show',[$forum->url,$post->slug]);
-            }   
-            
-        }
-
-        
-            auth()->user()->comments()->create([
+            //Create new comment
+            $reply = auth()->user()->comments()->create([
                 'content' => $request->content,
                 'post_id' => $post->id,
+                'parent' => $comment_id
             ]);
+
+                //Notify Comment Author of the new reply
+            if($comment and $comment->user->id != auth()->user()->id)
+                $comment->user->notify(new NewReplyAdded($reply));
+
+            //Check if user is post author
+            if($post->user->id != auth()->user()->id){
+
+                $post->user->notify(new NewCommentAdded($reply));
+                
+            }
+
+           
+            
+            //Flash message
+            session()->flash('success','Comment submitted.');
+
+            //Redirect to post
+            return redirect()->route('posts.show',[$server->url,$post->slug]);
+
+
+
+        /*
+        //Notify all users
         
-        
-       
-
-
-
-        session()->flash('success','Comment submitted.');
-
-        return redirect()->route('posts.show',[$forum->url,$post->slug]); */
+        while($comment){
+                
+                $comment->user->notify(new NewReplyAdded($comment));
+             
+                $comment = Comment::find($comment->parent);
+    
+            }
+        */
     }
 
     /**
@@ -111,10 +113,10 @@ class CommentsController extends Controller
         //
     }
 
-    public function reply(Forum $forum, Post $post, Comment $comment)
+    public function reply(Server $server, Post $post, Comment $comment)
     {
         return view('comments.reply',[
-            'forum' => $forum,
+            'server' => $server,
             'post' => $post,
             'comment' => $comment
         ]);

@@ -2,9 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-use App\Forum;
+use App\Server;
 
-class ForumsTableSeeder extends Seeder
+class ServersTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,13 +13,15 @@ class ForumsTableSeeder extends Seeder
      */
     public function run()
     {
-        Forum::create(['name' => 'Laravel for coders',
+        Server::create(['name' => 'Laravel for coders',
         'description' => 'A little space for laravel coders to talk about the best PHP framework.',
         'url' => Str::lower(preg_replace('/\s+/', '', 'Laravel for coders'))]);
 
-        Forum::create(['name' => 'The MERN Stack',
+        Server::create(['name' => 'The MERN Stack',
         'description' => 'MongoDB, ExpressJS, ReactJS and NodeJS. All in one place.',
         'url' => Str::lower(preg_replace('/\s+/', '', 'The MERN Stack'))]);
 
     }
 }
+
+

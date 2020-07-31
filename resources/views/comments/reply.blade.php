@@ -1,4 +1,4 @@
-@extends('layouts.forum')
+@extends('layouts.server')
 
 @section('content')
 
@@ -8,7 +8,7 @@
             
     <div class="card-header">
         <a href="{{route('users.show',$comment->user->username)}}">{{$comment->user->username}}</a>   
-        <span class="">{{$comment->date->format('d/m/Y')}}</span>
+        <span class="">{{$comment->created_at->format('d/m/Y')}}</span>
     </div>
     <div class="card-body">
         {!!$comment->content!!}
@@ -22,7 +22,7 @@
 
     <div class="card-body">
 
-        <form action="{{route('comments.store',[$comment->post->forum->url,$comment->post->slug])}}" method="POST">
+        <form action="{{route('comments.store',[$comment->post->server->url,$comment->post->slug])}}" method="POST">
         
             @csrf
 

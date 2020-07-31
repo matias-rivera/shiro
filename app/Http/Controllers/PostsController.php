@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreatePostRequest;
 use App\Post;
-use App\Forum;
+use App\Server;
 use App\User;
 
 class PostsController extends Controller
@@ -31,11 +31,11 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Forum $forum)
+    public function create(Server $server)
     {
         
          return view('posts.create',[
-            'forum' => $forum
+            'server' => $server
         ]); 
     }
 
@@ -45,19 +45,19 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Forum $forum, CreatePostRequest $request)
+    public function store(Server $server, CreatePostRequest $request)
     {
         auth()->user()->posts()->create([
             'title' => $request->title,
             'content' => $request->content,
-            'forum_id' => $forum->id,
+            'server_id' => $server->id,
             'slug' => Str::slug($request->title)
 
         ]);
 
         session()->flash('success','Post created.');
 
-        return redirect()->route('forums.show',$forum->url);
+        return redirect()->route('servers.show',$server->url);
     }
 
     /**
@@ -66,12 +66,12 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Forum $forum,Post $post)
+    public function show(Server $server,Post $post)
     {
         $post->increment('visits');
         return view('posts.show',[
             'post' => $post,
-            'forum' => $forum
+            'server' => $server
         ]);
     }
 
