@@ -7,6 +7,8 @@ use App\Http\Requests\CreatePostRequest;
 use App\Post;
 use App\Server;
 use App\User;
+use App\Comment;
+use App\Notifications\BestComment;
 
 class PostsController extends Controller
 {
@@ -97,6 +99,22 @@ class PostsController extends Controller
     {
         //
     }
+
+    public function comment(Post $post, Comment $comment)
+    {
+        //add middleware later
+        //Check if auth user is the same that the post author 
+        //and if the post author is not the comment author
+        if(auth()->user()->id == $post->user->id && $comment->user->id != $post->user->id){
+            $post->update(['comment_id' => $comment->id]);
+            $comment->user->notify(new BestComment($comment));
+        } 
+        
+        
+        return redirect()->back();
+    }
+
+    
 
     /**
      * Remove the specified resource from storage.

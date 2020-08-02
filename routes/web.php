@@ -28,6 +28,8 @@ Route::get('users/comments',[UsersController::class,'comments'])->name('users.co
 Route::resource('/users','UsersController');
 
 //Route::get('/u/{user}', 'UsersController@show')->name('users.show');
+
+Route::get('posts/{post}/best-comment/{comment}','PostsController@comment')->name('posts.best-comment');
 Route::resource('s/{server}/posts','PostsController');
 Route::resource('s/{server}/posts/{post}/comments', 'CommentsController');
 Route::get('s/{server}/posts/{post}/comments/{comment}/reply','CommentsController@reply')->name('comments.reply');

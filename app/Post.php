@@ -11,7 +11,7 @@ class Post extends Model
     protected $dates = ['created_at'];
 
     protected $fillable = [
-        'title', 'content', 'server_id','slug'
+        'title', 'content', 'server_id','slug','comment_id'
     ];
     public function getRouteKeyName(){
         return 'slug';
@@ -33,8 +33,15 @@ class Post extends Model
         return $this->hasMany('App\Comment');
     }
 
+    public function bestComment()
+    {
+        return $this->belongsTo('App\Comment', 'comment_id');
+    }
+
     public function scopeOrderByVisits($query){
         return $query->orderBy('visits','desc');
     }
+
+
     
 }

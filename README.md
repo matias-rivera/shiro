@@ -4,7 +4,7 @@ Project under development  🛠️
 
 ## About
 
-Shiro is a discussion network project under development, free to use for any community whose needs a platform to connect their members. 
+Shiro is a discussions network project under development, free to use for any community whose needs a platform to connect their users. 
 
 ## Some features are ☕ 
 

@@ -19,6 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('title')->unique();
             $table->text('content');
             $table->string('slug')->unique();
+            $table->integer('comment_id')->nullable();
             $table->integer('server_id');
             $table->integer('visits')->default(0);
             $table->timestamps();
