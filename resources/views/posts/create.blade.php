@@ -3,37 +3,38 @@
 @section('content')
 
 <div class="card">
-    <div class="card-header">Add Post</div>
+    <div class="card-header"> {{isset($post) ? 'Edit Post' : 'Create Post'}}</div>
 
     <div class="card-body">
 
-        <form action="{{route('posts.store',$server->url)}}" method="POST">
-        
+     
+        <form action="
+        {{isset($post) ?  
+        route('posts.update',['server' => $server->url,'post'=>$post->slug])
+        : 
+        route('posts.store',$server->url) 
+        }}
+        " method="POST" enctype="multipart/form-data">
+   
             @csrf
-         
 
+            @if (isset($post))
+                @method('PUT')
+            @endif
+
+         
             <div class="form-group">
                 <label for="title">Title</label>
-                <input type="text" class="form-control" name="title" value="">
+                <input type="text" class="form-control" name="title" {{isset($post) ? 'readonly' : ''}} value="{{isset($post) ? $post->title : ''}}">
             </div>
         
             <div class="form-group">
                 <label for="content">Content</label>
-                <input id="content" type="hidden" name="content">
+                <input id="content" type="hidden" name="content" value="{{isset($post) ? $post->content : ''}}">
                 <trix-editor input="content"></trix-editor>
             </div>
 
-            {{-- <div class="form-group">
-                <label for="channel">Channel</label>
-
-                <select name="channel" id="channel" class="form-control">
-                    @foreach ($channels as $channel)
-                        <option value="{{$channel->id}}">{{$channel->name}}</option>
-                    @endforeach
-                </select>
-            </div> --}}
-
-            <button type="submit" class="btn btn-success">Create Post</button>
+            <button type="submit" class="btn btn-success">{{isset($post) ? 'Edit Post' : 'Create Post'}}</button>
 
         </form>
     </div>

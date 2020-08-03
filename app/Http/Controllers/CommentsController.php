@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateCommentRequest;
+use App\Http\Requests\UpdateCommentRequest;
 use App\Post;
 use App\Server;
 use App\User;
@@ -128,9 +129,13 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Server $server, Post $post, Comment $comment)
     {
-        //
+        return view('comments.create',[
+            'server' => $server,
+            'post' => $post,
+            'comment' => $comment
+        ]);
     }
 
     /**
@@ -140,9 +145,14 @@ class CommentsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateCommentRequest $request, Server $server, Post $post, Comment $comment)
     {
-        //
+        $comment->content = $request->content;
+        $comment->save();
+        return view('posts.show',[
+            'server' => $server,
+            'post' => $post
+        ]);
     }
 
     /**

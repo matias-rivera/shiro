@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Post;
 use App\Server;
 use App\User;
@@ -49,6 +50,7 @@ class PostsController extends Controller
      */
     public function store(Server $server, CreatePostRequest $request)
     {
+        
         auth()->user()->posts()->create([
             'title' => $request->title,
             'content' => $request->content,
@@ -83,9 +85,12 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Server $server, Post $post)
     {
-        //
+        return view('posts.create',[
+            'server' => $server,
+            'post' => $post
+        ]);
     }
 
     /**
@@ -95,9 +100,17 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdatePostRequest $request, Server $server, Post $post)
     {
-        //
+
+        //Add title edit later
+        $post->content = $request->content;
+        $post->save();
+        
+        return view('posts.show',[
+            'post' => $post,
+            'server' => $server
+        ]);
     }
 
     public function comment(Post $post, Comment $comment)
