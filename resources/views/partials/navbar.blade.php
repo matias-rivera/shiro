@@ -42,6 +42,12 @@
                                         {{ __('Notifications') }}
                                 
                                 </a>    
+
+                                <a href="{{route('users.show',auth()->user()->username)}}" class="dropdown-item">
+    
+                                    {{ __('My Profile') }}
+                            
+                                </a>
                                 
                                 <a href="{{route('users.posts')}}" class="dropdown-item">
     

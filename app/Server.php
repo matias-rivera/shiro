@@ -19,4 +19,9 @@ class Server extends Model
     public function scopeOrderByVisits($query){
         return $query->orderBy('visits','desc');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
+    }
 }

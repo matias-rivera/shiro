@@ -59,6 +59,22 @@ class ServersController extends Controller
         ]);
     }
 
+
+    public function subscribe(Server $server)
+    {
+        /* Unsubscribed If auth user is already subscribed to the server */
+        if(auth()->user()->alreadySubscribed($server->id)){
+            auth()->user()->servers()->detach($server->id);
+        }
+
+        /* otherwise it will subscribe to the server */
+        else{
+            auth()->user()->servers()->attach($server->id);
+        }
+        return redirect()->route('servers.show',$server);
+
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

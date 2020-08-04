@@ -28,6 +28,9 @@
                 <input type="text" class="form-control" name="title" {{isset($post) ? 'readonly' : ''}} value="{{isset($post) ? $post->title : ''}}">
             </div>
         
+
+            
+
             <div class="form-group">
                 <label for="content">Content</label>
                 <input id="content" type="hidden" name="content" value="{{isset($post) ? $post->content : ''}}">
@@ -42,9 +45,9 @@
 @endsection
 
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.3/trix.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.3/trix.css" integrity="sha512-pTg+WiPDTz84G07BAHMkDjq5jbLS/AqY0rU/QdugnfeE0+zu0Kjz++0rrtYNK9gtzEZ33p+S53S2skXAZttrug==" crossorigin="anonymous" />
 @endsection
 
 @section('js')
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.3/trix.js"  crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.3/trix.js"></script>
 @endsection

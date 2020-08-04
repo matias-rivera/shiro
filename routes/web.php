@@ -21,6 +21,7 @@ use App\Http\Controllers\UsersController;
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/s/{server}','ServersController@show')->name('servers.show');
+Route::get('/s/{server}/subscribe', 'ServersController@subscribe')->name('servers.subscribe');
 Route::get('users/notifications',[UsersController::class,'notifications'])->name('users.notifications');
 Route::get('users/posts',[UsersController::class,'posts'])->name('users.posts');
 Route::get('users/comments',[UsersController::class,'comments'])->name('users.comments');

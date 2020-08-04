@@ -162,8 +162,25 @@
 
     {{-- Servers panel --}}
     <div role="tabpanel" class="tab-pane " id="servers">
-      {{--   @forelse ($user->servers as $server)
-            
+        @php
+         
+        @endphp
+        @forelse ($user->servers as $server)
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex justify-content-start">
+                    <img width="100px" height="100px" class="mr-2 border" src="https://cdn.auth0.com/blog/illustrations/laravel.png" alt="">
+                    <div>
+        
+                        <h2>  {{$server->name}}</h2>
+                        <h4><a href="{{route('servers.show',$server->url)}}">s/{{$server->url}}</a></h4>
+                    </div>
+                    
+                        
+                </div>
+               
+            </div>
+        </div>        
         @empty
         <div class="card">
             <div class="card-body">
@@ -171,7 +188,7 @@
             </div>
         </div>
     
-        @endforelse --}}
+        @endforelse
     </div>
   </div>
 

@@ -47,9 +47,25 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
+    public function servers()
+    {
+        return $this->belongsToMany('App\Server');
+    }
+
+    public function alreadySubscribed($id){
+        if($this->servers->find($id)){
+            return true;
+        }
+        return false;
+    }
+    
+  
+
     public function getRouteKeyName(){
         return 'username';
     } 
+
+
 
 }
 

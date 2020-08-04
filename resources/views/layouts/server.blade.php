@@ -46,10 +46,17 @@
                                 <p>{{$server->description}}</p>
 
                             </div>
-                         {{--    <div class="text-center">
-                                <a href="" class="btn btn-success">Join Server</a>
+                             <div class="text-center">
+                                 @auth
+                                     
+                                    @if (auth()->user()->alreadySubscribed($server->id))
+                                        <a href="{{route('servers.subscribe',$server->url)}}" class="btn btn-danger">Unsubscribe Server</a>
+                                    @else
+                                        <a href="{{route('servers.subscribe',$server->url)}}" class="btn btn-success">Subscribe Server</a>
+                                    @endif
 
-                            </div> --}}
+                                 @endauth
+                            </div>
                         </div>
                         <div class="card-footer">
                             <div class="">
@@ -66,8 +73,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
 
+
+    <script src="{{ asset('js/app.js') }}" ></script>
     @yield('js')
 </body>
 </html>
