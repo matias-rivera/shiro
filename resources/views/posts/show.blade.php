@@ -29,8 +29,13 @@
             
 
             <span class="float-right">
-            <i class="fa fa-eye" aria-hidden="true"></i> {{$post->visits}} Visits
-            <i class="fa fa-commenting-o" aria-hidden="true"></i> {{$post->comments->count()}} Comments
+            <i class="fa fa-eye" aria-hidden="true"></i> {{$post->visits}}
+            <i class="fa fa-commenting-o" aria-hidden="true"></i> {{$post->comments->count()}} 
+            <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{$post->likes()->count()}} 
+            <i class="fa fa-heart-o" aria-hidden="true"></i> {{$post->likes()->count()}}
+            
+            
+            
             </span>
         </div>
 
@@ -39,8 +44,26 @@
     @auth
     <div>
         <a href="{{route('comments.create',[$server->url,$post->slug])}}" class="btn btn-success">New Comment</a>
+        <div class="float-right">
+            <a href="" class="btn btn-danger">
+                <i class="fa fa-heart-o" aria-hidden="true"></i>
+            </a>
+            {{-- if auth user is not the post author --}}
+            @if (auth()->user()->id != $post->user->id)
+                @if (auth()->user()->alreadyLiked($post->id))
+                <a href="{{route('posts.like',$post->id)}}" class="btn btn-primary">
+                    <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+                </a>
+                @else
+                    <a href="{{route('posts.like',$post->id)}}" class="btn btn-primary">
+                        <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                    </a>      
+                @endif
+            @endif
+            
+
+        </div>
     </div>
-        
     @endauth
 
     {{-- Best comment --}}

@@ -58,12 +58,26 @@ class User extends Authenticatable
         }
         return false;
     }
+
+    public function alreadyLiked($id){
+        if($this->likes->find($id)){
+            return true;
+        }
+        return false;
+    }
     
   
 
     public function getRouteKeyName(){
         return 'username';
     } 
+
+
+    public function likes()
+    {
+        return $this->belongsToMany('App\Post', 'post_likes', 'user_id');
+    }
+
 
 
 

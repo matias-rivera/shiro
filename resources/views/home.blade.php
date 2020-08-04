@@ -3,6 +3,7 @@
 @section('content')
 Popular posts
 
+
 @foreach ($posts as $post)
 
 <style>

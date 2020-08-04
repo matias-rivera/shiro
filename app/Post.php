@@ -42,6 +42,11 @@ class Post extends Model
         return $query->orderBy('visits','desc');
     }
 
+    public function likes()
+    {
+        return $this->belongsToMany('App\User', 'post_likes', 'post_id');
+    }
+
 
     
 }

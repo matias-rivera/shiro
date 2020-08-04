@@ -138,6 +138,28 @@ class PostsController extends Controller
         return redirect()->back();
     }
 
+    public function like($post_id)
+    {
+        $post = Post::find($post_id);
+        
+       
+        if(auth()->user()->id != $post->user->id){
+            
+            if(!auth()->user()->alreadyLiked($post_id)){
+                 //Insert new like
+                auth()->user()->likes()->attach($post->id);
+            }
+            else{
+                //Delete like
+                auth()->user()->likes()->detach($post->id);
+            }
+            
+        }
+
+
+        
+        return redirect()->back();
+    }
     
 
     /**
