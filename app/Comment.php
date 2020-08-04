@@ -39,5 +39,10 @@ class Comment extends Model
         return $this->parent()->get()->first();
     }
 
+    public function likes()
+    {
+        return $this->belongsToMany('App\User', 'comment_likes', 'comment_id');
+    }
+
 
 }

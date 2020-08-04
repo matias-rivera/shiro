@@ -31,6 +31,7 @@ Route::resource('/users','UsersController');
 //Route::get('/u/{user}', 'UsersController@show')->name('users.show');
 
 Route::get('posts/{post}/best-comment/{comment}','PostsController@comment')->name('posts.best-comment');
+Route::get('comments/{comment}/like','CommentsController@like')->name('comments.like');
 Route::get('posts/{post}/like','PostsController@like')->name('posts.like');
 Route::resource('s/{server}/posts','PostsController');
 Route::resource('s/{server}/posts/{post}/comments', 'CommentsController');

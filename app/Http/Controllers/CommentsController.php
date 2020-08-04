@@ -165,4 +165,27 @@ class CommentsController extends Controller
     {
         //
     }
+
+
+    public function like(Comment $comment)
+    {
+    
+          
+       
+            
+            if(!auth()->user()->commentLiked($comment->id)){
+                 //Insert new like
+                auth()->user()->commentsLikes()->attach($comment->id);
+            }
+            else{
+                //Delete like
+                auth()->user()->commentsLikes()->detach($comment->id);
+            }
+            
+       
+
+
+        
+        return redirect()->back();
+    }
 }

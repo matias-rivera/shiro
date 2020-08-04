@@ -59,8 +59,15 @@ class User extends Authenticatable
         return false;
     }
 
-    public function alreadyLiked($id){
-        if($this->likes->find($id)){
+    public function postLiked($id){
+        if($this->postsLikes->find($id)){
+            return true;
+        }
+        return false;
+    }
+
+    public function commentLiked($id){
+        if($this->commentsLikes->find($id)){
             return true;
         }
         return false;
@@ -73,9 +80,14 @@ class User extends Authenticatable
     } 
 
 
-    public function likes()
+    public function postsLikes()
     {
         return $this->belongsToMany('App\Post', 'post_likes', 'user_id');
+    }
+
+    public function commentsLikes()
+    {
+        return $this->belongsToMany('App\Comment', 'comment_likes', 'user_id');
     }
 
 

@@ -145,13 +145,13 @@ class PostsController extends Controller
        
         if(auth()->user()->id != $post->user->id){
             
-            if(!auth()->user()->alreadyLiked($post_id)){
+            if(!auth()->user()->postLiked($post_id)){
                  //Insert new like
-                auth()->user()->likes()->attach($post->id);
+                auth()->user()->postsLikes()->attach($post->id);
             }
             else{
                 //Delete like
-                auth()->user()->likes()->detach($post->id);
+                auth()->user()->postsLikes()->detach($post->id);
             }
             
         }
