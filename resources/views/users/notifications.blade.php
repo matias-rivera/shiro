@@ -129,6 +129,22 @@
             </div>
                 
             @endif
+
+
+            {{-- New post on server Notification --}}
+            @if ($notification->type == 'App\Notifications\NewPostOnServer')
+
+            <p>
+               
+                The post <a href="{{route('posts.show',['server' => $notification->data['post']['server']['url'],'post'=>$notification->data['post']['slug']])}}">
+                {{$notification->data['post']['title']}}</a> has been added on <a href="{{route('servers.show',$notification->data['post']['server']['url'])}}">{{$notification->data['post']['server']['name']}}</a>.
+
+
+          
+            </p>
+            
+                
+            @endif
       
 
 

@@ -10,6 +10,7 @@ use App\Server;
 use App\User;
 use App\Comment;
 use App\Notifications\BestComment;
+use App\Notifications\NewPostOnServer;
 
 class PostsController extends Controller
 {
@@ -51,13 +52,23 @@ class PostsController extends Controller
     public function store(Server $server, CreatePostRequest $request)
     {
         
-        auth()->user()->posts()->create([
+        $post = auth()->user()->posts()->create([
             'title' => $request->title,
             'content' => $request->content,
             'server_id' => $server->id,
             'slug' => Str::slug($request->title)
 
         ]);
+        
+        /* Notify to all subscribed users */
+        foreach ($server->users as $user) {
+            if($post->user->id != $user->id){
+                $user->notify(new NewPostOnServer($post));
+            }
+        }
+
+    
+    
 
         session()->flash('success','Post created.');
 
