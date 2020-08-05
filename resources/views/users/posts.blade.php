@@ -7,7 +7,7 @@
 {{-- Posts from user --}}
     @forelse (auth()->user()->posts as $post)
 
-        @include('partials.post', ['post' => $post])
+        @include('partials.user_posts', ['post' => $post])
 
     @empty
             <div class="card">

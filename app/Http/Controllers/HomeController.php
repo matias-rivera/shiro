@@ -27,6 +27,6 @@ class HomeController extends Controller
     {
         return view('home')
         ->with('servers',Server::orderByVisits()->get())
-        ->with('posts',Post::take(50)->orderByVisits()->get());
+        ->with('posts',Post::published()->take(50)->orderByVisits()->get());
     }
 }

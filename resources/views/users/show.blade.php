@@ -44,7 +44,7 @@
   <div class="tab-content">
        {{-- Posts panel --}}
     <div role="tabpanel" class="tab-pane active" id="posts">
-        @forelse ($user->posts as $post)
+        @forelse ($user->postsPublished as $post)
 
             @include('partials.post', ['post' => $post])
         

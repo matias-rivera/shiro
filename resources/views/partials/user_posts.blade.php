@@ -1,6 +1,14 @@
-<div class="card my-2 ">
+<div class="card my-2 {{$post->state == 'drafted' ? 'border border-primary' : ''}}">
   
     <div class="card-header py-0 bg-white">
+        @if (auth()->user()->id == $post->user->id)
+            @if ($post->state == 'drafted')
+                <span class="float-left"> 
+                    <a class="btn btn-info py-0"href="{{route('posts.edit',['server'=>$post->server->url,'post'=>$post->slug])}}">Drafted</a>
+                   
+                </span>
+            @endif
+        @endif
         <span class="float-right">{{ $post->created_at->format('F j, Y, g:i a') }}</span>
     </div>
 

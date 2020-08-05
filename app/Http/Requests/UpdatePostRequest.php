@@ -24,7 +24,9 @@ class UpdatePostRequest extends FormRequest
     public function rules()
     {
         return [
-            'content' =>'required'
+            'content' =>'required',
+            'state' => 'required'
+            
         ];
     }
 }

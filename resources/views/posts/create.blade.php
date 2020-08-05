@@ -37,6 +37,15 @@
                 <trix-editor input="content"></trix-editor>
             </div>
 
+            @if (isset($post) && $post->state == 'drafted')
+                <div class="form-group">
+                    <select name="state" class="browser-default custom-select">
+                        <option {{isset($post) && $post->state == 'published' ? 'selected': ''}} value="published">Publish</option>
+                        <option  {{isset($post) && $post->state == 'drafted' ? 'selected': ''}} value="drafted">Draft</option>
+                    </select>
+                </div>           
+            @endif
+
             <button type="submit" class="btn btn-success">{{isset($post) ? 'Edit Post' : 'Create Post'}}</button>
 
         </form>

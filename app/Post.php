@@ -11,7 +11,7 @@ class Post extends Model
     protected $dates = ['created_at'];
 
     protected $fillable = [
-        'title', 'content', 'server_id','slug','comment_id'
+        'title', 'content', 'server_id','slug','comment_id','state'
     ];
     public function getRouteKeyName(){
         return 'slug';
@@ -50,6 +50,10 @@ class Post extends Model
     public function favorites()
     {
         return $this->belongsToMany('App\User', 'post_favorites', 'post_id');
+    }
+
+    public function scopePublished($query){
+        return $query->where('state','published');
     }
 
 

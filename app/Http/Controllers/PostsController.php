@@ -56,14 +56,18 @@ class PostsController extends Controller
             'title' => $request->title,
             'content' => $request->content,
             'server_id' => $server->id,
-            'slug' => Str::slug($request->title)
+            'slug' => Str::slug($request->title),
+            'state' => $request->state
 
         ]);
         
         /* Notify to all subscribed users */
-        foreach ($server->users as $user) {
-            if($post->user->id != $user->id){
-                $user->notify(new NewPostOnServer($post));
+        if($post->state == 'published')
+        {
+            foreach ($server->users as $user) {
+                if($post->user->id != $user->id){
+                    $user->notify(new NewPostOnServer($post));
+                }
             }
         }
 
@@ -83,11 +87,17 @@ class PostsController extends Controller
      */
     public function show(Server $server,Post $post)
     {
-        $post->increment('visits');
-        return view('posts.show',[
-            'post' => $post,
-            'server' => $server
-        ]);
+        if($post->state == 'published'){
+
+            $post->increment('visits');
+            return view('posts.show',[
+                'post' => $post,
+                'server' => $server
+            ]);
+        }
+        else{
+            return redirect()->back();
+        }
     }
 
     /**
@@ -115,7 +125,17 @@ class PostsController extends Controller
     {
 
         //Add title edit later
-        $post->content = $request->content;
+        $post->content = $request->content; 
+
+        // Check if post already was published
+        if($post->state == 'drafted'){
+            $post->state = $request->state;
+            $post->updated_at = now();
+            $post->created_at = now();
+        
+        } 
+            
+        
         $post->save();
         
         return view('posts.show',[
