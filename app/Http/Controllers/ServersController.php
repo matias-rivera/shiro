@@ -71,7 +71,7 @@ class ServersController extends Controller
         else{
             auth()->user()->servers()->attach($server->id);
         }
-        return redirect()->route('servers.show',$server);
+        return redirect()->back();
 
     }
 
