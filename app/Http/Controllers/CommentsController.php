@@ -171,7 +171,9 @@ class CommentsController extends Controller
     {
     
           
-       
+        /* if(auth()->user()->id != $comment->user->id){
+        } */
+
             
             if(!auth()->user()->commentLiked($comment->id)){
                  //Insert new like
@@ -182,8 +184,7 @@ class CommentsController extends Controller
                 auth()->user()->commentsLikes()->detach($comment->id);
             }
             
-       
-
+      
 
         
         return redirect()->back();

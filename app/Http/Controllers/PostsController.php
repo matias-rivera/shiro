@@ -143,8 +143,8 @@ class PostsController extends Controller
         $post = Post::find($post_id);
         
        
-        if(auth()->user()->id != $post->user->id){
-            
+       /*  if(auth()->user()->id != $post->user->id){
+        }  */ 
             if(!auth()->user()->postLiked($post_id)){
                  //Insert new like
                 auth()->user()->postsLikes()->attach($post->id);
@@ -154,7 +154,30 @@ class PostsController extends Controller
                 auth()->user()->postsLikes()->detach($post->id);
             }
             
-        }
+     
+
+
+        
+        return redirect()->back();
+    }
+
+    public function favorite($post_id)
+    {
+        $post = Post::find($post_id);
+        
+       
+       /*  if(auth()->user()->id != $post->user->id){
+        }  */ 
+            if(!auth()->user()->postFavorite($post_id)){
+                 //Insert new like
+                auth()->user()->postsFavorites()->attach($post->id);
+            }
+            else{
+                //Delete like
+                auth()->user()->postsFavorites()->detach($post->id);
+            }
+            
+     
 
 
         

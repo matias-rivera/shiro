@@ -47,6 +47,11 @@ class Post extends Model
         return $this->belongsToMany('App\User', 'post_likes', 'post_id');
     }
 
+    public function favorites()
+    {
+        return $this->belongsToMany('App\User', 'post_favorites', 'post_id');
+    }
+
 
     
 }

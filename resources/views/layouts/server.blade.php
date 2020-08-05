@@ -59,9 +59,11 @@
                             </div>
                         </div>
                         <div class="card-footer">
-                            <div class="">
-                                {{-- <i class="fa fa-users" aria-hidden="true"></i> {{$server->visits}} Members --}}
+                            <div class="text-center">
+                                 <i class="fa fa-users" aria-hidden="true"></i> {{$server->users->count()}} Subscribed 
                                 <i class="fa fa-sticky-note-o" aria-hidden="true"></i> {{$server->posts->count()}} Posts</div>
+                            </div>
+                    
                         </div>
                     </div>
                 </div>

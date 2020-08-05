@@ -33,6 +33,7 @@ Route::resource('/users','UsersController');
 Route::get('posts/{post}/best-comment/{comment}','PostsController@comment')->name('posts.best-comment');
 Route::get('comments/{comment}/like','CommentsController@like')->name('comments.like');
 Route::get('posts/{post}/like','PostsController@like')->name('posts.like');
+Route::get('posts/{post}/favorite','PostsController@favorite')->name('posts.favorite');
 Route::resource('s/{server}/posts','PostsController');
 Route::resource('s/{server}/posts/{post}/comments', 'CommentsController');
 Route::get('s/{server}/posts/{post}/comments/{comment}/reply','CommentsController@reply')->name('comments.reply');

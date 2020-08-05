@@ -1,11 +1,10 @@
-<div class="card my-2 {{bestCommentBorder($post,$comment)}}">
+<div class="card my-2 {{bestCommentBorder($comment->post,$comment)}}">
                 
     <div class="card-header">
         <img width="35px" height="35px" class="mr-2 border" src="https://cdn.auth0.com/blog/illustrations/laravel.png" alt="">
 
         <a href="{{route('users.show',$comment->user->username)}}">{{$comment->user->username}}</a>   
-{{--         <span class="">{{$comment->created_at->format('d/m/Y')}}</span>
---}}
+
 
         
 
@@ -17,9 +16,9 @@
                 
         
                 
-                        <a href="{{route('comments.like',$comment->id)}}" class="btn btn-light {{auth()->user()->commentLiked($comment->id) ? 'border border-success' : ''}} ">
-                            {{$comment->likes->count()}} <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
-                        </a>
+                <a href="{{route('comments.like',$comment->id)}}" class="btn btn-light {{auth()->user()->commentLiked($comment->id) ? 'border border-success' : ''}} ">
+                    {{$comment->likes->count()}} <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                </a>
             
         
                 
@@ -29,7 +28,7 @@
                 
                     @if (auth()->user()->id == $comment->user->id)
                     
-                            <a class="btn btn-light "href="{{route('comments.edit',['server'=>$post->server->url,'post'=>$post->slug,'comment' => $comment->id])}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                            <a class="btn btn-light "href="{{route('comments.edit',['server'=>$comment->post->server->url,'post'=>$comment->post->slug,'comment' => $comment->id])}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
                     
                     @endif
             
@@ -40,15 +39,16 @@
             
                 {{-- Mark as best comment button, if auth user is equal to post author --}}
                 
-                @if (auth()->user()->id == $post->user->id && auth()->user()->id != $comment->user->id)
-                    @if (!$post->comment_id || $post->comment_id != $comment->id)
-                        <a href="{{route('posts.best-comment',['post' => $post->slug, 'comment' => $comment->id])}}" class="btn btn-light"><i class="fa fa-star-o" aria-hidden="true"></i></a>
+                @if (auth()->user()->id == $comment->post->user->id && auth()->user()->id != $comment->user->id)
+                    @if (!$comment->post->comment_id || $comment->post->comment_id != $comment->id)
+                        <a href="{{route('posts.best-comment',['post' => $comment->post->slug, 'comment' => $comment->id])}}" class="btn btn-light"><i class="fa fa-star-o" aria-hidden="true"></i></a>
                     @endif
                 @endif
 
             @endauth
             @guest
-                {{$comment->likes->count()}} <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+                <a href="{{route('register')}}" class="btn btn-light">{{$comment->likes->count()}} <i class="fa fa-thumbs-o-up" aria-hidden="true"></i></a>
+                
             @endguest
         </div>
         
@@ -64,6 +64,10 @@
         @foreach ($comment->replies as $reply)
             @include('partials.comment', ['comment' => $reply])
         @endforeach
+    </div>
+
+    <div class="card-footer py-0">
+        <span class="float-right text-secondary">{{$comment->created_at->format('F j, Y, g:i a')}}</span>
     </div>
     
 </div>
