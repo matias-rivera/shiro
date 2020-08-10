@@ -17,10 +17,16 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('username')->unique();
+            $table->text('bio')->default('')->nullable();
+            $table->string('avatar')->default('avatars/user.jpg');
             $table->enum('role',['user','admin'])->default('user');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('twitter')->default('')->nullable();
+            $table->string('facebook')->default('')->nullable();
+            $table->string('instagram')->default('')->nullable();
+            $table->string('website')->default('')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

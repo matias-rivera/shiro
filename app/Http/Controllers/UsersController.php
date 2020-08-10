@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use App\Server;
+use App\Http\Requests\UpdateUserRequest;
 
 class UsersController extends Controller
 {
@@ -17,6 +18,9 @@ class UsersController extends Controller
     public function index()
     {
         //
+        return view('users.index',[
+        ]);
+
     }
 
     /**
@@ -76,8 +80,14 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateUserRequest $request, User $user)
     {
+
+        
+        $data = $request->only(['name','bio','twitter','facebook','website','instagram']);
+        auth()->user()->update($data);
+
+        return redirect()->route('users.index');
         //
     }
 
@@ -103,6 +113,13 @@ class UsersController extends Controller
     
         return view('users.comments');
     }
+
+    public function profile(){
+    
+        return view('users.profile');
+    }
+
+   
 
     /**
      * Remove the specified resource from storage.

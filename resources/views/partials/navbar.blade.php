@@ -49,20 +49,12 @@
                             
                                 </a>
                                 
-                                <a href="{{route('users.posts')}}" class="dropdown-item">
+                                <a href="{{route('users.index')}}" class="dropdown-item">
     
-                                        {{ __('My Posts') }}
+                                        {{ __('Settings') }}
                                 
                                 </a>
-
-                                <a href="{{route('users.comments')}}" class="dropdown-item">
-    
-                                    {{ __('My Comments') }}
-                            
-                                </a>
-                     
                                 
-            
                             
                             
                             

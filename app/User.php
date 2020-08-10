@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username','email', 'password',
+        'name', 'username','email', 'password','bio','twitter','facebook','instagram','website'
     ];
 
     /**
@@ -52,6 +52,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Comment');
     }
 
+
     public function servers()
     {
         return $this->belongsToMany('App\Server');
@@ -85,6 +86,19 @@ class User extends Authenticatable
         return false;
     }
     
+    public function socialIcon(){
+        if ($this->socialnetwork == 'twitter') {
+            return 'fa-twitter';
+        } elseif($this->socialnetwork == 'instagram') {
+            return 'fa-instagram';
+        } elseif($this->socialnetwork == 'facebook'){
+            return 'fa-facebook';
+        }
+        else{
+            return 'fa-globe';
+        }
+        
+    }
   
 
     public function getRouteKeyName(){

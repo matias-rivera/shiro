@@ -43,11 +43,9 @@
                             <img class="rounded-circle mx-auto d-block mb-2" style="max-width:100px" src="https://cdn.auth0.com/blog/illustrations/laravel.png" alt="">
                              <a href="{{route('users.show',auth()->user()->username)}}"><h6 class="text-center">{{auth()->user()->username}}</h6></a> 
                             <div class="text-center">
-                               {{--  <p>{{$server->description}}</p> --}}
 
                             </div>
                             <div class="text-center">
-                                {{-- <a href="" class="btn btn-success">Join Server</a> --}}
 
                             </div>
                         </div>
@@ -57,6 +55,26 @@
                                 <i class="fa fa-commenting-o" aria-hidden="true"></i> {{auth()->user()->comments->count()}} Comments</div> 
                         </div>
                     </div>
+
+                    <ul class="list-group">
+                        <a href="{{route('users.profile')}}">
+                            <li class="list-group-item">
+                                Profile
+                            </li>
+                        </a>
+                        <a href="{{route('users.posts')}}">
+                            <li class="list-group-item">
+                                My Posts
+                            </li>
+                        </a>
+                        <a href="{{route('users.comments')}}">
+                            <li class="list-group-item">
+                                My Comments
+                            </li>
+                        </a>
+
+                    </ul>
+
                 </div>
 
 
@@ -66,7 +84,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" ></script>
 
     @yield('js')
 </body>

@@ -8,15 +8,30 @@
     
     <div class="card-body">
         <div class="d-flex justify-content-start">
-            <img width="100px" height="100px" class="mr-2 border" src="https://cdn.auth0.com/blog/illustrations/laravel.png" alt="">
+            <img width="100px" height="100px" class="mr-2 border" src="{{asset("storage/$user->avatar")}}" alt="">
             <div>
 
                 <h2> {{$user->name}}</h2>
                 <h4><a href="{{route('users.show',$user->username)}}">{{$user->username}}</a></h4>
+
+                @if ($user->twitter)
+                    <a target="_blank" href="//{{$user->twitter}}/"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                @endif
+                @if ($user->instagram)
+                    <a target="_blank" href="//{{$user->instagram}}/"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+                @endif
+                @if ($user->facebook)
+                    <a target="_blank" href="//{{$user->facebook}}/"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                @endif
+                @if ($user->website)
+                    <a target="_blank" href="//{{$user->website}}/"><i class="fa fa-globe" aria-hidden="true"></i></a>
+                @endif
+
+
+
             </div>
-            
-                
         </div>
+        
         <span class="float-right">
             <i class="fa fa-sticky-note-o" aria-hidden="true"></i> {{$user->posts->count()}} Posts
             <i class="fa fa-commenting-o" aria-hidden="true"></i> {{$user->comments->count()}} Comments
@@ -29,7 +44,10 @@
 <!-- Nav tabs -->
 <ul class="nav nav-tabs bg-white border" role="tablist">
     <li class="nav-item">
-      <a class="nav-link active" href="#posts" role="tab" data-toggle="tab">Posts</a>
+        <a class="nav-link active" href="#bio" role="tab" data-toggle="tab">Bio</a>
+      </li>
+    <li class="nav-item">
+      <a class="nav-link " href="#posts" role="tab" data-toggle="tab">Posts</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#comments" role="tab" data-toggle="tab">Comments</a>
@@ -42,8 +60,23 @@
 
   <!-- Tab panels -->
   <div class="tab-content">
+      {{-- Bio panel --}}
+      <div role="tabpanel" class="tab-pane active" id="bio">
+        <div class="card">
+            <div class="card-body">
+        @if ($user->bio != '')
+            {!!$user->bio!!}
+        @else
+                    No bio to show.
+        @endif
+        
+            </div>
+        </div>
+  
+
+    </div>
        {{-- Posts panel --}}
-    <div role="tabpanel" class="tab-pane active" id="posts">
+    <div role="tabpanel" class="tab-pane" id="posts">
         @forelse ($user->postsPublished as $post)
 
             @include('partials.post', ['post' => $post])
