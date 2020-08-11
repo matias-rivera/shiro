@@ -5,7 +5,7 @@
 <div class="card">
     <div class="card-header">Profile</div>
     <div class="card-body">
-        <form action="{{route('users.update',auth()->user()->username)}}" method="POST">
+        <form action="{{route('users.update',auth()->user()->username)}}" method="POST" enctype="multipart/form-data">>
             @csrf
             @method("PUT")
 
@@ -18,6 +18,11 @@
                 <label for="bio">Bio</label>
                 <input id="bio" type="hidden" name="bio" value="{{auth()->user()->bio}}">
                 <trix-editor input="bio"></trix-editor>
+            </div>
+
+            <div class="form-group">
+                <label for="avatar">Image</label>
+                <input type="file" class="form-control" name="avatar" id="avatar">
             </div>
 
             <div class="form-group">

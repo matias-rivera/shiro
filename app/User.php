@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'username','email', 'password','bio','twitter','facebook','instagram','website'
+        'name', 'username','email', 'password','bio','twitter','facebook','instagram','website','avatar'
     ];
 
     /**
@@ -98,6 +99,10 @@ class User extends Authenticatable
             return 'fa-globe';
         }
         
+    }
+
+    public function deleteAvatar(){
+        Storage::delete($this->avatar);
     }
   
 

@@ -1,7 +1,7 @@
 <div class="card my-2 {{bestCommentBorder($comment->post,$comment)}}">
                 
     <div class="card-header">
-        <img width="35px" height="35px" class="mr-2 border" src="https://cdn.auth0.com/blog/illustrations/laravel.png" alt="">
+        <img width="35px" height="35px" class="mr-2 border" src="{{asset("storage/".$comment->user->avatar)}}" alt="">
 
         <a href="{{route('users.show',$comment->user->username)}}">{{$comment->user->username}}</a>   
 

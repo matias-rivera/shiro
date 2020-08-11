@@ -85,6 +85,21 @@ class UsersController extends Controller
 
         
         $data = $request->only(['name','bio','twitter','facebook','website','instagram']);
+        
+        
+        if($request->hasFIle('avatar')){
+
+            $avatar = $request->avatar->store('avatars');
+
+            if($avatar != 'avatars/user.jpg')
+            {
+                auth()->user()->deleteAvatar();
+            }
+
+            $data['avatar'] = $avatar;
+
+        }
+
         auth()->user()->update($data);
 
         return redirect()->route('users.index');

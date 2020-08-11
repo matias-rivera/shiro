@@ -5,7 +5,7 @@
     {{-- Post --}}
     <div class="card mb-4">
         <div class="card-header">
-            <img width="35px" height="35px" class="mr-2 border" src="https://cdn.auth0.com/blog/illustrations/laravel.png" alt="">
+            <img width="35px" height="35px" class="mr-2 border" src="{{asset("storage/".$post->user->avatar)}}" alt="">
             <a href="{{route('users.show',$post->user->username)}}">{{$post->user->username}}</a>   
 
             <span class="float-right">{{ $post->created_at->format('F j, Y, g:i a') }}</span>
@@ -48,15 +48,15 @@
                         {{$post->favorites()->count()}} <i class="fa fa-heart-o" aria-hidden="true"></i>
                     </a>
                 @endauth
-                    <a href="{{route('register')}}" class="btn btn-light">
-                        {{$post->likes()->count()}} <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 
-                    </a>
-                    
-                    <a href="{{route('register')}}" class="btn btn-light">
-                        {{$post->favorites()->count()}} <i class="fa fa-heart-o" aria-hidden="true"></i>
-                    </a>
                 @guest
-                    
+                <a href="{{route('register')}}" class="btn btn-light">
+                    {{$post->likes()->count()}} <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 
+                </a>
+                
+                <a href="{{route('register')}}" class="btn btn-light">
+                    {{$post->favorites()->count()}} <i class="fa fa-heart-o" aria-hidden="true"></i>
+                </a>
+                
                 @endguest
             </span>
 

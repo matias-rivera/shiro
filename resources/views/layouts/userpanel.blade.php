@@ -40,7 +40,7 @@
                     <div class="card">
                         <div class="card-header text-center font-weight-bold">{{auth()->user()->name}}</div>
                         <div class="card-body">
-                            <img class="rounded-circle mx-auto d-block mb-2" style="max-width:100px" src="https://cdn.auth0.com/blog/illustrations/laravel.png" alt="">
+                            <img class="rounded-circle mx-auto d-block mb-2" style="max-width:100px" src="{{asset("storage/".auth()->user()->avatar)}}" alt="">
                              <a href="{{route('users.show',auth()->user()->username)}}"><h6 class="text-center">{{auth()->user()->username}}</h6></a> 
                             <div class="text-center">
 
